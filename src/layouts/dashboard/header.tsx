@@ -20,7 +20,12 @@ import AccountPopover from '../common/account-popover';
 import ContactsPopover from '../common/contacts-popover';
 import LanguagePopover from '../common/language-popover';
 import NotificationsPopover from '../common/notifications-popover';
-
+import { Button } from '@mui/material';
+import NavList from 'src/components/nav-section/horizontal/nav-list';
+import { AiOutlineUser } from "react-icons/ai";
+import { useNavData } from './config-navigation';
+import { useMockedUser } from 'src/hooks/use-mocked-user';
+import { NavSectionHorizontal } from 'src/components/nav-section';
 // ----------------------------------------------------------------------
 
 type Props = {
@@ -28,7 +33,9 @@ type Props = {
 };
 
 export default function Header({ onOpenNav }: Props) {
+  const navData = useNavData()
   const theme = useTheme();
+  const {user} = useMockedUser()
 
   const settings = useSettingsContext();
 
@@ -44,16 +51,25 @@ export default function Header({ onOpenNav }: Props) {
 
   const renderContent = (
     <>
-      {lgUp && isNavHorizontal && <Logo sx={{ mr: 2.5 }} />}
-
+      {/* {lgUp && isNavHorizontal && <Logo sx={{ mr: 2.5 }} />} */}
+      
       {!lgUp && (
         <IconButton onClick={onOpenNav}>
           <SvgColor src="/assets/icons/navbar/ic_menu_item.svg" />
         </IconButton>
       )}
 
-      <Searchbar />
-
+<Logo sx={{ mr: 2.5 }} />
+      {!!lgUp &&<NavSectionHorizontal
+            data={navData}
+            slotProps={{
+              currentRole: user?.role,
+            }}
+            sx={{
+              ...theme.mixins.toolbar,
+            }}
+          />
+}
       <Stack
         flexGrow={1}
         direction="row"
@@ -61,7 +77,20 @@ export default function Header({ onOpenNav }: Props) {
         justifyContent="flex-end"
         spacing={{ xs: 0.5, sm: 1 }}
       >
-        <LanguagePopover />
+        <Button color='inherit'  variant='contained' sx={{bgcolor:"primary.main"}}>Start Hiring</Button>
+        <Button color='inherit' variant='outlined'  sx={{bgcolor:"common.white",borderColor:"primary.main", color:'primary.main'}}>Apply As Talent</Button>
+        <IconButton
+          sx={{
+            color: 'primary.main', // Sets the icon color
+            border: '1px solid',   // Adds a border
+            borderColor: 'primary.main', // Sets the border color
+            borderRadius: '50%',   // Optional: makes the button circular
+          }}
+          >
+      <AiOutlineUser />
+    </IconButton>
+    <Searchbar />
+        {/* <LanguagePopover />
 
         <NotificationsPopover />
 
@@ -69,10 +98,11 @@ export default function Header({ onOpenNav }: Props) {
 
         <SettingsButton />
 
-        <AccountPopover />
+        <AccountPopover /> */}
       </Stack>
     </>
   );
+  
 
   return (
     <AppBar

@@ -19,9 +19,9 @@ export default function NavToggleButton({ sx, ...other }: IconButtonProps) {
 
   const lgUp = useResponsive('up', 'lg');
 
-  if (!lgUp) {
-    return null;
-  }
+  // if (!lgUp) {
+  //   return null;
+  // }
 
   return (
     <IconButton

@@ -87,19 +87,22 @@ const NavItem = forwardRef<HTMLDivElement, NavItemProps>(
     if (externalLink)
       return (
         <Link
-          href={path}
-          target="_blank"
-          rel="noopener"
-          color="inherit"
-          underline="none"
-          sx={{
-            ...(disabled && {
-              cursor: 'default',
-            }),
-          }}
-        >
-          {renderContent}
-        </Link>
+  href={path}
+  target="_blank"
+  rel="noopener"
+  color="inherit"
+  underline="none" // Remove default underline
+  sx={{
+    ...(disabled && {
+      cursor: 'default',
+    }),
+    '&:hover': {
+      textDecoration: 'underline', // Underline on hover
+    },
+  }}
+>
+  {renderContent}
+</Link>
       );
 
     return (
@@ -112,6 +115,11 @@ const NavItem = forwardRef<HTMLDivElement, NavItemProps>(
           ...(disabled && {
             cursor: 'default',
           }),
+          '&:hover' : {
+            bgcolor:"action.selected",
+            color:"primary.main",
+            textDecoration:"underline"
+          }
         }}
       >
         {renderContent}
@@ -184,7 +192,8 @@ const StyledNavItem = styled(ListItemButton, {
         ...baseStyles.arrow,
       },
       ...(active && {
-        color: theme.palette.text.primary,
+        color: theme.palette.primary.main,
+        textDecoration:"underline",
         backgroundColor: theme.palette.action.selected,
         fontWeight: theme.typography.fontWeightSemiBold,
       }),
@@ -217,12 +226,12 @@ const StyledNavItem = styled(ListItemButton, {
         marginRight: theme.spacing(-0.5),
       },
       ...(active && {
-        color: theme.palette.text.primary,
+        color: theme.palette.primary.main,
         backgroundColor: theme.palette.action.selected,
         fontWeight: theme.typography.fontWeightSemiBold,
       }),
       ...(opened && {
-        color: theme.palette.text.primary,
+        color: theme.palette.primary.main,
         backgroundColor: theme.palette.action.hover,
       }),
     }),

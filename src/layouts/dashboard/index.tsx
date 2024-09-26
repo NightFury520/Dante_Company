@@ -58,7 +58,7 @@ export default function DashboardLayout({ children }: Props) {
             flexDirection: { xs: 'column', lg: 'row' },
           }}
         >
-          {lgUp ? renderNavMini : renderNavVertical}
+          {/* {lgUp ? renderNavMini : renderNavVertical} */}
 
           <Main>{children}</Main>
         </Box>

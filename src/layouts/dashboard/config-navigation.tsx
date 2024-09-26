@@ -51,33 +51,38 @@ export function useNavData() {
       {
         subheader: 'overview v5.6.0',
         items: [
-          { title: 'one', path: paths.dashboard.root, icon: ICONS.dashboard },
-          { title: 'two', path: paths.dashboard.two, icon: ICONS.ecommerce },
+          { title: 'Home', path: paths.dashboard.root,  },
+          { title: 'How It works', path: paths.dashboard.two, },
           {
-            title: 'three',
+            title: 'About Us',
             path: paths.dashboard.three,
-            icon: ICONS.analytics,
+            
           },
+          { title: 'Careers', path: paths.dashboard.group.root },
+              { title: 'Insights', path: paths.dashboard.group.five },
+              { title: 'Pricing', path: paths.dashboard.group.six },
+              { title: 'Services', path: paths.dashboard.group.six },
+
         ],
       },
 
       // MANAGEMENT
       // ----------------------------------------------------------------------
-      {
-        subheader: 'management',
-        items: [
-          {
-            title: 'user',
-            path: paths.dashboard.group.root,
-            icon: ICONS.user,
-            children: [
-              { title: 'four', path: paths.dashboard.group.root },
-              { title: 'five', path: paths.dashboard.group.five },
-              { title: 'six', path: paths.dashboard.group.six },
-            ],
-          },
-        ],
-      },
+      // {
+      //   subheader: 'management',
+      //   items: [
+      //     {
+      //       title: 'user',
+      //       path: paths.dashboard.group.root,
+      //       icon: ICONS.user,
+      //       children: [
+      //         { title: 'four', path: paths.dashboard.group.root },
+      //         { title: 'five', path: paths.dashboard.group.five },
+      //         { title: 'six', path: paths.dashboard.group.six },
+      //       ],
+      //     },
+      //   ],
+      // },
     ],
     []
   );
